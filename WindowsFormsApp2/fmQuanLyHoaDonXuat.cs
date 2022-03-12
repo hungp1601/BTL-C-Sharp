@@ -1,16 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp2
 {
-    public partial class fmQuanLyHoaDonNhap : Form
+    public partial class fmQuanLyHoaDonXuat : Form
     {
         string ConnectionString = ConfigurationManager.AppSettings.Get("ConnectionString");
-        public fmQuanLyHoaDonNhap()
+        public fmQuanLyHoaDonXuat()
         {
             InitializeComponent();
         }
@@ -44,7 +49,7 @@ namespace WindowsFormsApp2
 
         void loadData()
         {
-            string sql = "select * from vDanhSachHoaDonNhap";
+            string sql = "select * from vDanhSachHoaDonXuat";
             SqlConnection connection = new SqlConnection(ConnectionString);
             connection.Open();
             SqlDataAdapter dataadapter = new SqlDataAdapter(sql, connection);
@@ -71,11 +76,15 @@ namespace WindowsFormsApp2
 
         }
 
-        int Check_MaHDN()
+        private void fmQuanLyHoaDonXuat_Load(object sender, EventArgs e)
+        {
+            loadData();
+        }
+        int Check_MaHDX()
         {
             SqlConnection sqlConnection = new SqlConnection(ConnectionString);
             sqlConnection.Open();
-            SqlCommand cmd = new SqlCommand("select * from tblHoaDonNhap where sMaHDN = '" + txtMaHDN.Text + "'", sqlConnection);
+            SqlCommand cmd = new SqlCommand("select * from tblHoaDonXuat where sMaHDX = '" + txtMaHDN.Text + "'", sqlConnection);
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataSet ds1 = new DataSet();
             da.Fill(ds1);
@@ -91,7 +100,7 @@ namespace WindowsFormsApp2
                 errorProvider1.SetError(textBox, "Không được để trống");
                 btnDisabledAll();
             }
-            else if (Check_MaHDN() > 0)
+            else if (Check_MaHDX() > 0)
             {
                 errorProvider1.SetError(textBox, "");
                 btnExisted();
@@ -101,78 +110,6 @@ namespace WindowsFormsApp2
                 errorProvider1.SetError(textBox, "");
                 btnInitial();
             }
-        }
-
-        private void btnThem_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("bạn có muốn thêm hóa đơn này ?", "thông báo", MessageBoxButtons.YesNo) == DialogResult.No)
-            {
-                return;
-            }
-            string SQL = "procThemHDN";
-
-            SqlConnection con = new SqlConnection(ConnectionString);
-
-            SqlCommand cmd = new SqlCommand(SQL, con);
-
-            cmd.CommandType = CommandType.StoredProcedure;
-            SqlParameter param;
-
-            param = cmd.Parameters.Add("@MaHDN", SqlDbType.NVarChar, 10);
-            param.Value = txtMaHDN.Text;
-
-            param = cmd.Parameters.Add("@MaNV", SqlDbType.NVarChar, 25);
-            param.Value = cbbMaNV.Text;
-
-            param = cmd.Parameters.Add("@NgayLap", SqlDbType.Date);
-            param.Value = dtpNL.Value.ToString();
-
-            con.Open();
-
-
-
-            try
-            {
-                int rowsAffected = cmd.ExecuteNonQuery();
-                if (rowsAffected > 0)
-                {
-                    MessageBox.Show("thêm thành công", "thông báo");
-                }
-                else
-                {
-                    MessageBox.Show("thêm thất bại", "thông báo");
-                }
-            }
-            catch
-            {
-                MessageBox.Show("đã có hóa đơn này", "thông báo");
-
-            }
-            loadData();
-            con.Close();
-        }
-
-        private void fmQuanLyHoaDonNhap_Load(object sender, EventArgs e)
-        {
-            loadData();
-
-        }
-
-        private void fmQuanLyHoaDonNhap_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (e.CloseReason == CloseReason.UserClosing)
-            {
-                if (MessageBox.Show("bạn có muốn thoát ?", "Thoát", MessageBoxButtons.YesNo) == DialogResult.No)
-                {
-                    e.Cancel = true;
-                }
-                else e.Cancel = false;
-            }
-        }
-
-        private void txtMaHD_Validating(object sender, CancelEventArgs e)
-        {
-            Check_Empty_String(txtMaHDN);
         }
 
         private void dgvDSHoaDonNhap_SelectionChanged(object sender, EventArgs e)
@@ -192,13 +129,45 @@ namespace WindowsFormsApp2
                 dtpNL.Value = DateTime.Parse(dgvDSHoaDonNhap.CurrentRow.Cells[3].Value.ToString());
         }
 
-        private void btnSua_Click(object sender, EventArgs e)
+        private void cbbMaNV_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (MessageBox.Show("bạn có muốn sửa hóa đơn này ?", "thông báo", MessageBoxButtons.YesNo) == DialogResult.No)
+            if (Check_MaHDX() > 0)
+            {
+                btnExisted();
+            }
+            else
+            {
+                btnInitial();
+            }
+            string manv = cbbMaNV.Text;
+            SqlConnection sqlConnection = new SqlConnection(ConnectionString);
+            sqlConnection.Open();
+            SqlCommand cmd = new SqlCommand("select sTenNV from tblNhanVien where sMaNV = '" + manv + "'", sqlConnection);
+
+            string i = (string)cmd.ExecuteScalar();
+            txtTenNV.Text = i;
+        }
+
+
+        private void fmQuanLyHoaDonXuat_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                if (MessageBox.Show("bạn có muốn thoát ?", "Thoát", MessageBoxButtons.YesNo) == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+                else e.Cancel = false;
+            }
+        }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("bạn có muốn thêm hóa đơn này ?", "thông báo", MessageBoxButtons.YesNo) == DialogResult.No)
             {
                 return;
             }
-            string SQL = "procSuaHDN";
+            string SQL = "procThemHDX";
 
             SqlConnection con = new SqlConnection(ConnectionString);
 
@@ -207,7 +176,59 @@ namespace WindowsFormsApp2
             cmd.CommandType = CommandType.StoredProcedure;
             SqlParameter param;
 
-            param = cmd.Parameters.Add("@MaHDN", SqlDbType.NVarChar, 10);
+            param = cmd.Parameters.Add("@MaHDX", SqlDbType.NVarChar, 10);
+            param.Value = txtMaHDN.Text;
+
+            param = cmd.Parameters.Add("@MaNV", SqlDbType.NVarChar, 25);
+            param.Value = cbbMaNV.Text;
+
+            param = cmd.Parameters.Add("@NgayLap", SqlDbType.Date);
+            param.Value = dtpNL.Value.ToString();
+
+            con.Open();
+
+            
+            
+           
+            try
+            {
+                int rowsAffected = cmd.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("thêm thành công", "thông báo");
+                }
+                else
+                {
+                    MessageBox.Show("thêm thất bại", "thông báo");
+                }
+
+            }
+            catch
+            {
+                MessageBox.Show("đã có hóa đơn này", "thông báo");
+
+            }
+            loadData();
+            con.Close();
+        }
+
+        
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("bạn có muốn sửa hóa đơn này ?", "thông báo", MessageBoxButtons.YesNo) == DialogResult.No)
+            {
+                return;
+            }
+            string SQL = "procSuaHDX";
+
+            SqlConnection con = new SqlConnection(ConnectionString);
+
+            SqlCommand cmd = new SqlCommand(SQL, con);
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            SqlParameter param;
+
+            param = cmd.Parameters.Add("@MaHDX", SqlDbType.NVarChar, 10);
             param.Value = txtMaHDN.Text;
 
             param = cmd.Parameters.Add("@MaNV", SqlDbType.NVarChar, 25);
@@ -225,7 +246,6 @@ namespace WindowsFormsApp2
             if (rowsAffected > 0)
             {
                 MessageBox.Show("sửa thành công", "thông báo");
-                btnChooseRow();
             }
             else
             {
@@ -240,7 +260,7 @@ namespace WindowsFormsApp2
             {
                 return;
             }
-            string SQL = "procXoaHDN";
+            string SQL = "procXoaHDX";
 
             SqlConnection con = new SqlConnection(ConnectionString);
 
@@ -249,7 +269,7 @@ namespace WindowsFormsApp2
             cmd.CommandType = CommandType.StoredProcedure;
             SqlParameter param;
 
-            param = cmd.Parameters.Add("@MaHDN", SqlDbType.NVarChar, 10);
+            param = cmd.Parameters.Add("@MaHDX", SqlDbType.NVarChar, 10);
             param.Value = txtMaHDN.Text;
 
 
@@ -258,11 +278,10 @@ namespace WindowsFormsApp2
             int rowsAffected = cmd.ExecuteNonQuery();
 
             con.Close();
-           
+
             if (rowsAffected > 0)
             {
                 MessageBox.Show("xóa thành công", "thông báo");
-                btnChooseRow();
             }
             else
             {
@@ -271,25 +290,9 @@ namespace WindowsFormsApp2
             loadData();
         }
 
-        private void cbbMaNV_SelectedIndexChanged(object sender, EventArgs e)
+        private void txtMaHDN_Validating(object sender, CancelEventArgs e)
         {
-            if (Check_MaHDN() > 0)
-            {
-                btnExisted();
-            }
-            else
-            {
-                btnInitial();
-            }
-            string manv = cbbMaNV.Text;
-            SqlConnection sqlConnection = new SqlConnection(ConnectionString);
-            sqlConnection.Open();
-            SqlCommand cmd = new SqlCommand("select sTenNV from tblNhanVien where sMaNV = '" + manv + "'", sqlConnection);
-
-            string i = (string)cmd.ExecuteScalar();
-            txtTenNV.Text = i;
-
+            Check_Empty_String(txtMaHDN);
         }
     }
 }
-

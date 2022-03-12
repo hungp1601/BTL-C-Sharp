@@ -190,16 +190,6 @@ select * from tblChiTietHDN
 select * from tblHoaDonNhap
 select * from tblSach
 
-create proc procThemChiTietHDN
-@MaHDN VARCHAR(10),
-@Masach VARCHAR(10),
-@SL INT,
-@DGmua FLOAT
-as
-	insert tblChiTietHDN values (@MaHDN,@Masach,@SL,@DGmua)
-
-exec procThemChiTietHDN 'HDN001','22',30,4000
-
 
 create view vDanhSachChiTietHoaDonNhap
 as
@@ -229,6 +219,107 @@ select*from tblHoaDonNhap
 select*from tblSach
 
 exec proc_ThemChiTietHDN 'HDN002', '22',10,5000
+
+create proc proc_SuaChiTietHDN
+@MaHDN VARCHAR(10),
+@Masach VARCHAR(10),
+@SL INT,
+@DGmua FLOAT
+as
+begin	
+	update tblChiTietHDN set iSL=@SL,fDGmua=@DGmua
+	where @MaHDN=sMaHDN and @Masach=sMasach
+end
+
+exec  proc_SuaChiTietHDN 'HDN002', '22',10,5000
+
+create proc proc_XoaChiTietHDN
+@MaHDN VARCHAR(10),
+@Masach VARCHAR(10)
+as
+begin	
+	delete tblChiTietHDN
+	where @MaHDN=sMaHDN and @Masach=sMasach
+end
+
+
+select * from vDanhSachChiTietHoaDonNhap,vDanhSachHoaDonNhap where  sMaHDN=[Mã hóa đơn]
+
+
+--view proc hd xuat
+
+
+create VIEW vDanhSachHoaDonXuat
+AS
+SELECT sMaHDX as N'Mã hóa đơn', sMaNV as N'Mã nhân viên', 
+(
+	select sTenNV
+	FROM  tblNhanVien 
+	where tblNhanVien.sMaNV=tblHoaDonXuat.sMaNV
+) as N'Tên nhân viên',
+dNgayLap N'Ngày lập',isnull((
+	select SUM(iSL*fDGban)
+	FROM  tblChiTietHDX
+	where sMaHDX=tblHoaDonXuat.sMaHDX
+	GROUP BY sMaHDX
+),0) as N'Tổng tiền'
+FROM tblHoaDonXuat
+
+create proc procThemHDX
+@MaHDX VARCHAR(10),
+@MaNV VARCHAR(10),
+@NgayLap DATE
+as
+	insert into tblHoaDonXuat values (@MaHDX,@MaNV,@NgayLap)
+
+execute procThemHDX 'HDN001','001','03/04/2019'
+execute procThemHDX 'HDN002','002','03/04/2018'
+
+create proc procSuaHDX
+@MaHDX VARCHAR(10),
+@MaNV VARCHAR(10),
+@NgayLap DATE
+as
+	update tblHoaDonXuat set sMaNV=@MaNV,dNgayLap=@NgayLap where  sMaHDX = @MaHDX
+
+
+create proc procXoaHDX
+@MaHDX VARCHAR(10)
+as
+	delete from tblHoaDonXuat where  sMaHDX=@MaHDX
+
+
+-- danh sach chi tiet hoa don xuat
+
+create view vDanhSachChiTietHoaDonXuat
+as
+select sMaHDX, sMasach, 
+(
+	select sTensach
+	FROM  tblSach 
+	where tblSach.sMasach=tblChiTietHDX.sMasach
+) as N'Ten sach',
+iSL,fDGban,
+(iSL*fDGban) as 'tong tien'
+from tblChiTietHDX
+
+select *from vDanhSachChiTietHoaDonXuat
+
+
+create proc proc_ThemChiTietHDX
+@MaHDX VARCHAR(10),
+@Masach VARCHAR(10),
+@SL INT,
+@DGmua FLOAT
+as
+begin	
+	insert into tblChiTietHDN values (@MaHDX,@Masach,@SL,@DGmua)
+end
+
+select*from tblHoaDonNhap
+select*from tblSach
+
+exec proc_ThemChiTietHDN 'HDX002', '22',10,5000
 
 create proc proc_SuaChiTietHDN
 @MaHDN VARCHAR(10),

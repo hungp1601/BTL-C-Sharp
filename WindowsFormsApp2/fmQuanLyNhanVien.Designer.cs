@@ -492,7 +492,7 @@ namespace WindowsFormsApp2
         private System.Windows.Forms.DataGridViewTextBoxColumn luong;
         private System.Windows.Forms.DataGridViewTextBoxColumn nvl;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+ 
         private System.Windows.Forms.TextBox txtDC;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
@@ -500,7 +500,7 @@ namespace WindowsFormsApp2
         private System.Windows.Forms.RadioButton rtNam;
         private System.Windows.Forms.TextBox txtHSL;
         private System.Windows.Forms.DateTimePicker dtpNgaysinh;
-        private System.Windows.Forms.TextBox txtTimKiem;
+
         private System.Windows.Forms.TextBox txtTim;
     }
 }

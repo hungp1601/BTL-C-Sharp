@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 using System.Configuration;
-using System.Collections.Specialized;
+using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace WindowsFormsApp2
 {
@@ -178,11 +174,6 @@ namespace WindowsFormsApp2
             txtSach.Text = dgvDanhSachHDN.CurrentRow.Cells[2].Value.ToString();
             txtSL.Text = dgvDanhSachHDN.CurrentRow.Cells[3].Value.ToString();
             txtDG.Text = dgvDanhSachHDN.CurrentRow.Cells[4].Value.ToString();
-        }
-
-        private void btnSua_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void cbbSach_SelectedIndexChanged(object sender, EventArgs e)

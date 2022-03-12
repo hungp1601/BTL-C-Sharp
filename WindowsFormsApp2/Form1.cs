@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace WindowsFormsApp2
@@ -51,6 +44,27 @@ namespace WindowsFormsApp2
         private void quảnLýChiTiếtHóaĐơnToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fmChiTietHoaDonNhap form = new fmChiTietHoaDonNhap();
+            form.MdiParent = this;
+            form.Show();
+        }
+
+        private void báoCáoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            rpHoaDonNhap form = new rpHoaDonNhap();
+            form.MdiParent = this;
+            form.Show();
+        }
+
+        private void quảnLýHóaĐơnXuấtToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            fmQuanLyHoaDonXuat form = new fmQuanLyHoaDonXuat();
+            form.MdiParent = this;
+            form.Show();
+        }
+
+        private void chiTiếtHóaĐơnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fmChiTietHoaDonXuat form = new fmChiTietHoaDonXuat();
             form.MdiParent = this;
             form.Show();
         }
