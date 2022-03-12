@@ -306,40 +306,41 @@ from tblChiTietHDX
 select *from vDanhSachChiTietHoaDonXuat
 
 
-create proc proc_ThemChiTietHDX
+alter proc proc_ThemChiTietHDX
 @MaHDX VARCHAR(10),
 @Masach VARCHAR(10),
 @SL INT,
-@DGmua FLOAT
+@DGban FLOAT
 as
 begin	
-	insert into tblChiTietHDN values (@MaHDX,@Masach,@SL,@DGmua)
+	insert into tblChiTietHDX values (@MaHDX,@Masach,@SL,@DGban)
 end
 
-select*from tblHoaDonNhap
+select*from tblChiTietHDN
 select*from tblSach
 
-exec proc_ThemChiTietHDN 'HDX002', '22',10,5000
+exec proc_ThemChiTietHDX 'HDX002', '22',10,5000
 
-create proc proc_SuaChiTietHDN
-@MaHDN VARCHAR(10),
+create proc proc_SuaChiTietHDX
+@MaHDX VARCHAR(10),
 @Masach VARCHAR(10),
 @SL INT,
-@DGmua FLOAT
+@DGban FLOAT
 as
 begin	
-	update tblChiTietHDN set iSL=@SL,fDGmua=@DGmua
-	where @MaHDN=sMaHDN and @Masach=sMasach
+	update tblChiTietHDX set iSL=@SL,fDGban=@DGban
+	where @MaHDX=sMaHDX and @Masach=sMasach
 end
 
-exec  proc_SuaChiTietHDN 'HDN002', '22',10,5000
+exec  proc_SuaChiTietHDX 'HDX002', '22',11,5000
 
-create proc proc_XoaChiTietHDN
-@MaHDN VARCHAR(10),
+create proc proc_XoaChiTietHDX
+@MaHDX VARCHAR(10),
 @Masach VARCHAR(10)
 as
 begin	
-	delete tblChiTietHDN
-	where @MaHDN=sMaHDN and @Masach=sMasach
+	delete tblChiTietHDX
+	where @MaHDX=sMaHDX and @Masach=sMasach
 end
 
+exec  proc_XoaChiTietHDX 'HDX002', '22'

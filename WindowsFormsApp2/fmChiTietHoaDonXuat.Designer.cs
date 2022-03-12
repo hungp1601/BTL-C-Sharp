@@ -29,6 +29,7 @@ namespace WindowsFormsApp2
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.cbbMaHD = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.txtDG = new System.Windows.Forms.TextBox();
@@ -50,7 +51,9 @@ namespace WindowsFormsApp2
             this.sl = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgmua = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tongtien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSachHDN)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // cbbMaHD
@@ -61,6 +64,7 @@ namespace WindowsFormsApp2
             this.cbbMaHD.Name = "cbbMaHD";
             this.cbbMaHD.Size = new System.Drawing.Size(104, 21);
             this.cbbMaHD.TabIndex = 78;
+            this.cbbMaHD.SelectedIndexChanged += new System.EventHandler(this.cbbMaHD_SelectedIndexChanged);
             // 
             // textBox1
             // 
@@ -69,6 +73,7 @@ namespace WindowsFormsApp2
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(169, 20);
             this.textBox1.TabIndex = 77;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // txtDG
             // 
@@ -77,6 +82,8 @@ namespace WindowsFormsApp2
             this.txtDG.Name = "txtDG";
             this.txtDG.Size = new System.Drawing.Size(91, 20);
             this.txtDG.TabIndex = 76;
+            this.txtDG.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDG_KeyPress);
+            this.txtDG.Validating += new System.ComponentModel.CancelEventHandler(this.txtDG_Validating);
             // 
             // label4
             // 
@@ -95,6 +102,8 @@ namespace WindowsFormsApp2
             this.txtSL.Name = "txtSL";
             this.txtSL.Size = new System.Drawing.Size(91, 20);
             this.txtSL.TabIndex = 74;
+            this.txtSL.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSL_KeyPress);
+            this.txtSL.Validating += new System.ComponentModel.CancelEventHandler(this.txtSL_Validating);
             // 
             // label2
             // 
@@ -133,6 +142,7 @@ namespace WindowsFormsApp2
             this.cbbSach.Name = "cbbSach";
             this.cbbSach.Size = new System.Drawing.Size(104, 21);
             this.cbbSach.TabIndex = 70;
+            this.cbbSach.SelectedIndexChanged += new System.EventHandler(this.cbbSach_SelectedIndexChanged);
             // 
             // btnXoa
             // 
@@ -163,6 +173,7 @@ namespace WindowsFormsApp2
             this.btnThem.TabIndex = 67;
             this.btnThem.Text = "Thêm";
             this.btnThem.UseVisualStyleBackColor = true;
+            this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
             // txt
             // 
@@ -195,6 +206,7 @@ namespace WindowsFormsApp2
             this.dgvDanhSachHDN.RowTemplate.Height = 25;
             this.dgvDanhSachHDN.Size = new System.Drawing.Size(683, 194);
             this.dgvDanhSachHDN.TabIndex = 65;
+            this.dgvDanhSachHDN.SelectionChanged += new System.EventHandler(this.dgvDanhSachHDN_SelectionChanged);
             // 
             // label1
             // 
@@ -248,6 +260,10 @@ namespace WindowsFormsApp2
             this.tongtien.Name = "tongtien";
             this.tongtien.ReadOnly = true;
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // fmChiTietHoaDonXuat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -273,6 +289,7 @@ namespace WindowsFormsApp2
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.fmChiTietHoaDonXuat_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSachHDN)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -301,5 +318,6 @@ namespace WindowsFormsApp2
         private System.Windows.Forms.DataGridViewTextBoxColumn dgmua;
         private System.Windows.Forms.DataGridViewTextBoxColumn tongtien;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

@@ -69,8 +69,9 @@ END
 
 
 -- trigger chi tiet HDX va sach
+
 create trigger trInsertChiTietHDX_Sach
-on tblChiTietHDN
+on tblChiTietHDX
 for insert
 as 
 begin
@@ -91,7 +92,7 @@ end
 
 
 create trigger trDeleteChiTietHDX_Sach
-on tblChiTietHDN
+on tblChiTietHDX
 for delete
 as 
 begin
@@ -112,7 +113,7 @@ end
 
 
 CREATE TRIGGER UpdateChiTietHDX_Sach
-ON tblChiTietHDN
+ON tblChiTietHDX
 FOR UPDATE
 AS
 BEGIN
