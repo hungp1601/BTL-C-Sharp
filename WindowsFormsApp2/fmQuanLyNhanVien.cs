@@ -105,7 +105,11 @@ namespace WindowsFormsApp2
                 {
                     e.Cancel = true;
                 }
-                else e.Cancel = false;
+                else
+                {
+                    
+                    e.Cancel = false;
+                }
             }
         }
 
@@ -319,19 +323,24 @@ namespace WindowsFormsApp2
             param.Value = dtpNVL.Value.ToString();
 
             con.Open();
+            try
+            {
+                int rowsAffected = cmd.ExecuteNonQuery();
 
-            int rowsAffected = cmd.ExecuteNonQuery();
-
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("thêm thành công", "thông báo");
+                }
+                else
+                {
+                    MessageBox.Show("thêm thất bại", "thông báo");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("không thể thêm", "thông báo");
+            }
             con.Close();
-
-            if (rowsAffected > 0)
-            {
-                MessageBox.Show("thêm thành công", "thông báo");
-            }
-            else
-            {
-                MessageBox.Show("thêm thất bại", "thông báo");
-            }
             loadData();
         }
 
@@ -384,18 +393,27 @@ namespace WindowsFormsApp2
 
             con.Open();
 
-            int rowsAffected = cmd.ExecuteNonQuery();
+            
+
+            try
+            {
+                int rowsAffected = cmd.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("sửa thành công", "thông báo");
+                }
+                else
+                {
+                    MessageBox.Show("sửa thất bại", "thông báo");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("không thể sửa", "thông báo");
+            }
+            
 
             con.Close();
-
-            if (rowsAffected > 0)
-            {
-                MessageBox.Show("sửa thành công", "thông báo");
-            }
-            else
-            {
-                MessageBox.Show("sửa thất bại", "thông báo");
-            }
             loadData();
         }
 
@@ -419,19 +437,26 @@ namespace WindowsFormsApp2
 
 
             con.Open();
+            try
+            {
+                int rowsAffected = cmd.ExecuteNonQuery();
 
-            int rowsAffected = cmd.ExecuteNonQuery();
 
+
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("xóa thành công", "thông báo");
+                }
+                else
+                {
+                    MessageBox.Show("xóa thất bại", "thông báo");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("không thể xóa", "thông báo");
+            }
             con.Close();
-
-            if (rowsAffected > 0)
-            {
-                MessageBox.Show("xóa thành công", "thông báo");
-            }
-            else
-            {
-                MessageBox.Show("xóa thất bại", "thông báo");
-            }
             loadData();
         }
 

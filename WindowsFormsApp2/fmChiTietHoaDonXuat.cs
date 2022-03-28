@@ -14,7 +14,7 @@ namespace WindowsFormsApp2
 {
     public partial class fmChiTietHoaDonXuat : Form
     {
-        string ConnectionString = ConfigurationManager.AppSettings.Get("ConnectionString");
+        string ConnectionString = ConfigurationManager.AppSettings.Get("ConnectionString").ToString();
         public fmChiTietHoaDonXuat()
         {
             InitializeComponent();
@@ -174,7 +174,7 @@ namespace WindowsFormsApp2
             string manv = cbbSach.Text;
             SqlConnection sqlConnection = new SqlConnection(ConnectionString);
             sqlConnection.Open();
-            SqlCommand cmd = new SqlCommand("select sTensach from tblSach where sTenSach = '" + manv + "'", sqlConnection);
+            SqlCommand cmd = new SqlCommand("select sTensach from tblSach where sMaSach = '" + manv + "'", sqlConnection);
 
             string i = (string)cmd.ExecuteScalar();
             txtSach.Text = i;
@@ -254,9 +254,6 @@ namespace WindowsFormsApp2
 
             con.Open();
 
-            
-
-
             try
             {
                 int rowsAffected = cmd.ExecuteNonQuery();
@@ -271,10 +268,118 @@ namespace WindowsFormsApp2
             }
             catch
             {
-                MessageBox.Show("Xảy ra lỗi", "thông báo");
+                MessageBox.Show("thêm thất bại", "thông báo");
             }
             con.Close();
             loadData();
         }
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("bạn có muốn sửa hóa đơn này ?", "thông báo", MessageBoxButtons.YesNo) == DialogResult.No)
+            {
+                return;
+            }
+            string SQL = "proc_SuaChiTietHDX";
+
+            SqlConnection con = new SqlConnection(ConnectionString);
+
+            SqlCommand cmd = new SqlCommand(SQL, con);
+
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter param;
+
+            param = cmd.Parameters.AddWithValue("@MaHDX", cbbMaHD.Text);
+
+            param = cmd.Parameters.AddWithValue("@Masach", cbbSach.Text);
+
+            param = cmd.Parameters.AddWithValue("@SL", int.Parse(txtSL.Text));
+
+            param = cmd.Parameters.AddWithValue("@DGban", float.Parse(txtDG.Text));
+
+            con.Open();
+            try
+            {
+                int rowsAffected = cmd.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("sửa thành công", "thông báo");
+                }
+                else
+                {
+                    MessageBox.Show("sửa thất bại", "thông báo");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("không thể sửa", "thông báo");
+            }
+
+
+            con.Close();
+            loadData();
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("bạn có muốn sửa hóa đơn này ?", "thông báo", MessageBoxButtons.YesNo) == DialogResult.No)
+            {
+                return;
+            }
+            string SQL = "proc_XoaChiTietHDX";
+
+            SqlConnection con = new SqlConnection(ConnectionString);
+
+            SqlCommand cmd = new SqlCommand(SQL, con);
+
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter param;
+
+            param = cmd.Parameters.AddWithValue("@MaHDX", cbbMaHD.Text);
+
+            param = cmd.Parameters.AddWithValue("@Masach", cbbSach.Text);
+
+            con.Open();
+            try
+            {
+                int rowsAffected = cmd.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("Xóa thành công", "thông báo");
+                }
+                else
+                {
+                    MessageBox.Show("Xóa thất bại", "thông báo");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("không thể xóa", "thông báo");
+            }
+
+            
+            con.Close();
+            loadData();
+        }
+
+        private void txtSL_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void fmChiTietHoaDonXuat_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                if (MessageBox.Show("bạn có muốn thoát ?", "Thoát", MessageBoxButtons.YesNo) == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+                else e.Cancel = false;
+            }
+        }
     }
+    
 }

@@ -44,13 +44,13 @@ namespace WindowsFormsApp2
             this.btnThem = new System.Windows.Forms.Button();
             this.txt = new System.Windows.Forms.Label();
             this.dgvDanhSachHDN = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
             this.mahdn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.masach = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tensach = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sl = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgmua = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tongtien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSachHDN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -102,6 +102,7 @@ namespace WindowsFormsApp2
             this.txtSL.Name = "txtSL";
             this.txtSL.Size = new System.Drawing.Size(91, 20);
             this.txtSL.TabIndex = 74;
+            this.txtSL.TextChanged += new System.EventHandler(this.txtSL_TextChanged);
             this.txtSL.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSL_KeyPress);
             this.txtSL.Validating += new System.ComponentModel.CancelEventHandler(this.txtSL_Validating);
             // 
@@ -153,6 +154,7 @@ namespace WindowsFormsApp2
             this.btnXoa.TabIndex = 69;
             this.btnXoa.Text = "Xóa";
             this.btnXoa.UseVisualStyleBackColor = true;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // btnSua
             // 
@@ -163,6 +165,7 @@ namespace WindowsFormsApp2
             this.btnSua.TabIndex = 68;
             this.btnSua.Text = "Sửa";
             this.btnSua.UseVisualStyleBackColor = true;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // btnThem
             // 
@@ -208,19 +211,9 @@ namespace WindowsFormsApp2
             this.dgvDanhSachHDN.TabIndex = 65;
             this.dgvDanhSachHDN.SelectionChanged += new System.EventHandler(this.dgvDanhSachHDN_SelectionChanged);
             // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(41, 252);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 13);
-            this.label1.TabIndex = 64;
-            this.label1.Text = "Mã hóa đơn";
-            // 
             // mahdn
             // 
-            this.mahdn.DataPropertyName = "sMaHDN";
+            this.mahdn.DataPropertyName = "sMaHDX";
             this.mahdn.HeaderText = "Mã hóa đơn";
             this.mahdn.Name = "mahdn";
             this.mahdn.ReadOnly = true;
@@ -260,6 +253,16 @@ namespace WindowsFormsApp2
             this.tongtien.Name = "tongtien";
             this.tongtien.ReadOnly = true;
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(41, 252);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 13);
+            this.label1.TabIndex = 64;
+            this.label1.Text = "Mã hóa đơn";
+            // 
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
@@ -287,6 +290,7 @@ namespace WindowsFormsApp2
             this.Name = "fmChiTietHoaDonXuat";
             this.Text = "fmChiTietHoaDonXuat";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fmChiTietHoaDonXuat_FormClosing);
             this.Load += new System.EventHandler(this.fmChiTietHoaDonXuat_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSachHDN)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
@@ -311,13 +315,13 @@ namespace WindowsFormsApp2
         private System.Windows.Forms.Button btnThem;
         private System.Windows.Forms.Label txt;
         private System.Windows.Forms.DataGridView dgvDanhSachHDN;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.DataGridViewTextBoxColumn mahdn;
         private System.Windows.Forms.DataGridViewTextBoxColumn masach;
         private System.Windows.Forms.DataGridViewTextBoxColumn tensach;
         private System.Windows.Forms.DataGridViewTextBoxColumn sl;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgmua;
         private System.Windows.Forms.DataGridViewTextBoxColumn tongtien;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

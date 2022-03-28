@@ -217,20 +217,27 @@ namespace WindowsFormsApp2
             param.Value = dtpNL.Value.ToString();
 
             con.Open();
-
-            int rowsAffected = cmd.ExecuteNonQuery();
+            try
+            {
+                int rowsAffected = cmd.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("sửa thành công", "thông báo");
+                    btnChooseRow();
+                }
+                else
+                {
+                    MessageBox.Show("sửa thất bại", "thông báo");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("không thể sửa", "thông báo");
+            }
 
             con.Close();
 
-            if (rowsAffected > 0)
-            {
-                MessageBox.Show("sửa thành công", "thông báo");
-                btnChooseRow();
-            }
-            else
-            {
-                MessageBox.Show("sửa thất bại", "thông báo");
-            }
+            
             loadData();
         }
 
@@ -254,20 +261,29 @@ namespace WindowsFormsApp2
 
 
             con.Open();
-
-            int rowsAffected = cmd.ExecuteNonQuery();
+            try
+            {
+                int rowsAffected = cmd.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("xóa thành công", "thông báo");
+                    btnChooseRow();
+                }
+                else
+                {
+                    MessageBox.Show("xóa thất bại", "thông báo");
+                }
+            }
+            catch
+            {
+                
+                 MessageBox.Show("không thể xóa", "thông báo");
+                
+            }
 
             con.Close();
            
-            if (rowsAffected > 0)
-            {
-                MessageBox.Show("xóa thành công", "thông báo");
-                btnChooseRow();
-            }
-            else
-            {
-                MessageBox.Show("xóa thất bại", "thông báo");
-            }
+            
             loadData();
         }
 

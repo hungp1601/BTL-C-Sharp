@@ -151,6 +151,12 @@
       <DependentUpon>CrystalReport1.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="dangnhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dangnhap.Designer.cs">
+      <DependentUpon>dangnhap.cs</DependentUpon>
+    </Compile>
     <Compile Include="fmChiTietHoaDonNhap.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +168,12 @@
     </Compile>
     <Compile Include="fmChiTietHoaDonXuat.Designer.cs">
       <DependentUpon>fmChiTietHoaDonXuat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fmNhaXuatBan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fmNhaXuatBan.Designer.cs">
+      <DependentUpon>fmNhaXuatBan.cs</DependentUpon>
     </Compile>
     <Compile Include="fmQuanLyHoaDonNhap.cs">
       <SubType>Form</SubType>
@@ -180,6 +192,12 @@
     </Compile>
     <Compile Include="fmQuanLyNhanVien.Designer.cs">
       <DependentUpon>fmQuanLyNhanVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fmSach.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fmSach.Designer.cs">
+      <DependentUpon>fmSach.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -204,11 +222,17 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrystalReport1.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="dangnhap.resx">
+      <DependentUpon>dangnhap.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="fmChiTietHoaDonNhap.resx">
       <DependentUpon>fmChiTietHoaDonNhap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fmChiTietHoaDonXuat.resx">
       <DependentUpon>fmChiTietHoaDonXuat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fmNhaXuatBan.resx">
+      <DependentUpon>fmNhaXuatBan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fmQuanLyHoaDonNhap.resx">
       <DependentUpon>fmQuanLyHoaDonNhap.cs</DependentUpon>
@@ -218,6 +242,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="fmQuanLyNhanVien.resx">
       <DependentUpon>fmQuanLyNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fmSach.resx">
+      <DependentUpon>fmSach.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

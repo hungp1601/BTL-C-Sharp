@@ -147,19 +147,25 @@ namespace WindowsFormsApp2
             param = cmd.Parameters.AddWithValue("@DGmua", float.Parse(txtDG.Text));
 
             con.Open();
+            try
+            {
+                int rowsAffected = cmd.ExecuteNonQuery();
 
-            int rowsAffected = cmd.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("thêm thành công", "thông báo");
+                }
+                else
+                {
+                    MessageBox.Show("thêm thất bại", "thông báo");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("không thể thêm", "thông báo");
+            }
 
             con.Close();
-
-            if (rowsAffected > 0)
-            {
-                MessageBox.Show("thêm thành công", "thông báo");
-            }
-            else
-            {
-                MessageBox.Show("thêm thất bại", "thông báo");
-            }
             loadData();
         }
 
@@ -189,7 +195,7 @@ namespace WindowsFormsApp2
             string manv = cbbSach.Text;
             SqlConnection sqlConnection = new SqlConnection(ConnectionString);
             sqlConnection.Open();
-            SqlCommand cmd = new SqlCommand("select sTensach from tblSach where sTenSach = '" + manv + "'", sqlConnection);
+            SqlCommand cmd = new SqlCommand("select sTensach from tblSach where sMasach = '" + manv + "'", sqlConnection);
 
             string i = (string)cmd.ExecuteScalar();
             txtSach.Text = i;
@@ -232,19 +238,26 @@ namespace WindowsFormsApp2
             param = cmd.Parameters.AddWithValue("@DGmua", float.Parse(txtDG.Text));
 
             con.Open();
+            try
+            {
+                int rowsAffected = cmd.ExecuteNonQuery();
 
-            int rowsAffected = cmd.ExecuteNonQuery();
 
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("sửa thành công", "thông báo");
+                }
+                else
+                {
+                    MessageBox.Show("sửa thất bại", "thông báo");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("không thể sửa", "thông báo");
+            }
             con.Close();
 
-            if (rowsAffected > 0)
-            {
-                MessageBox.Show("sửa thành công", "thông báo");
-            }
-            else
-            {
-                MessageBox.Show("sửa thất bại", "thông báo");
-            }
             loadData();
         }
 
@@ -270,18 +283,28 @@ namespace WindowsFormsApp2
 
             con.Open();
 
-            int rowsAffected = cmd.ExecuteNonQuery();
+           
+
+            try
+            {
+                int rowsAffected = cmd.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                {
+                    MessageBox.Show("xóa thành công", "thông báo");
+                }
+                else
+                {
+                    MessageBox.Show("xóa thất bại", "thông báo");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("không thể xóa", "thông báo");
+            }
+
+            
 
             con.Close();
-
-            if (rowsAffected > 0)
-            {
-                MessageBox.Show("xóa thành công", "thông báo");
-            }
-            else
-            {
-                MessageBox.Show("xóa thất bại", "thông báo");
-            }
             loadData();
         }
 
@@ -330,6 +353,19 @@ namespace WindowsFormsApp2
         private void txtDG_Validating(object sender, CancelEventArgs e)
         {
             Check_Empty_String(txtDG);
+        }
+
+        private void fmChiTietHoaDonNhap_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                if (MessageBox.Show("bạn có muốn thoát ?", "Thoát", MessageBoxButtons.YesNo) == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
+                else e.Cancel = false;
+            }
+
         }
     }
 }

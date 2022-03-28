@@ -7,10 +7,25 @@ create procedure them_NXB
 @DC NVARCHAR(255)
 AS
 begin 
-	INSERT INTO tblNXB VALUES (@MaNXB,@TenNXB,@SDT,@DC)
+	INSERT INTO tblNXB VALUES (@MaNXB , @TenNXB, @SDT,@DC)
+end
+
+
+
+create procedure proc_sua_NXB
+@MaNXB VARCHAR(10),
+@TenNXB NVARCHAR(25),
+@SDT VARCHAR(10),
+@DC NVARCHAR(255)
+AS
+begin 
+	update tblNXB set sTenNXB=@TenNXB,sSDT=@SDT,sDC=@DC
+	where @MaNXB=sMaNXB
 end
 
 exec them_NXB '241',N'Kim Đồng','0696969669',N'Hà Nội'
+exec them_NXB '243',N'Tuổi trẻ','0696969629',N'Hà Nội'
+exec them_NXB '246',N'Vật lý','0696969632',N'Hà Nội'
 select * from tblNXB
 
 --proc xoa nxb
@@ -21,8 +36,20 @@ begin
 	delete from tblNXB where (@MaNXB=sMaNXB)
 end
 
-exec xoa_NXB '241'
+exec xoa_NXB '246'
 
+create view vDanhSachSach
+as
+select sMasach,sTensach,sMaNXB,
+(
+	select sTenNXB
+	from tblNXB
+	where tblNXB.sMaNXB=tblsach.sMaNXB
+) as 'ten nxb',
+sTacgia,sTheloai,iSLSach
+from tblSach
+
+select * from vDanhSachSach
 
 create procedure them_sach
 @Masach VARCHAR(10),
@@ -36,7 +63,22 @@ begin
 end
 
 exec them_sach '22',N'dark nhân tâm','241',N'hung',N'chúa hề'
-delete from tblSach where sMasach = '21'
+
+exec them_sach '23',N'Làm đĩ','243',N'Vũ Trọng Phụng',N'truyện'
+
+create procedure sua_sach
+@Masach VARCHAR(10),
+@Tensach NVARCHAR(255),
+@MaNXB VARCHAR(10),
+@Tacgia NVARCHAR(255),
+@Theloai NVARCHAR(255)
+as 
+begin 
+	update tblSach
+	set sTensach=@Tensach,sMaNXB=@MaNXB,sTacgia=@Tacgia,sTheloai=@Theloai
+	where @Masach=sMasach
+end
+
 select * from tblSach
 
 create procedure xoa_sach
@@ -48,25 +90,8 @@ end
 
 exec xoa_sach '21'
 
-create procedure sua_sach_theo_ma
-@Masach VARCHAR(10),
-@Tensach NVARCHAR(255)
-as
-begin 
-	update tblSach
-	set sTensach=@Tensach
-	where sMasach=@Masach
-end
 
-create procedure sua_nxb_theo_ma
-@Manxb VARCHAR(10),
-@Tennxb NVARCHAR(25)
-as
-begin 
-	update tblNXB
-	set sTenNXB=@Tennxb
-	where sMaNXB=@Manxb
-end
+
 
 select * from tblNXB
 
@@ -89,15 +114,16 @@ begin
 	insert into tblNhanVien values (@MaNV,@TenNV,@Ngaysinh,@Gioitinh,@Diachi,@SDT,@HSL,@PC,@Ngayvaolam)
 end
 
+
 exec procThemNhanVien '001',N'Hùng','3/20/1990',1,N'Hà Nội','0123456789',2,30000,'3/20/2012'
 exec procThemNhanVien '002',N'Linh','3/20/1990',0,N'Hà Nội','0123456241',3,200000,'5/20/2012'
 
---luong co ban =1000000
+--luong co ban = 1000000
 
-CREATE VIEW vDanhSachNhanVien 
+alter  VIEW vDanhSachNhanVien 
 AS
 with Luongcoban(luong) as (
-	select 100000 as 'luong'
+	select 1000000 as 'luong'
 	)
 SELECT sMaNV as N'Mã Nhân viên', sTenNV , dNgaysinh as N'Ngày sinh',
 case bGioitinh  WHEN 1 THEN N'Nam' ELSE N'Nữ' END 
@@ -139,7 +165,7 @@ select * from vDanhSachNhanVien where sTenNV like N'%Hù%'
 
 --thủ tục liên quan đến hóa đơn nhap
 
-alter VIEW vDanhSachHoaDonNhap
+create VIEW vDanhSachHoaDonNhap
 AS
 SELECT sMaHDN as N'Mã hóa đơn', sMaNV as N'Mã nhân viên', 
 (
@@ -168,7 +194,7 @@ as
 execute procThemHDN 'HDN001','001','03/04/2019'
 execute procThemHDN 'HDN002','002','03/04/2018'
 
-alter proc procSuaHDN
+create proc procSuaHDN
 @MaHDN VARCHAR(10),
 @MaNV VARCHAR(10),
 @NgayLap DATE
@@ -231,7 +257,7 @@ begin
 	where @MaHDN=sMaHDN and @Masach=sMasach
 end
 
-exec  proc_SuaChiTietHDN 'HDN002', '22',10,5000
+exec  proc_SuaChiTietHDN 'HDN002', '22',12,5000
 
 create proc proc_XoaChiTietHDN
 @MaHDN VARCHAR(10),
@@ -243,7 +269,6 @@ begin
 end
 
 
-select * from vDanhSachChiTietHoaDonNhap,vDanhSachHoaDonNhap where  sMaHDN=[Mã hóa đơn]
 
 
 --view proc hd xuat
@@ -272,8 +297,8 @@ create proc procThemHDX
 as
 	insert into tblHoaDonXuat values (@MaHDX,@MaNV,@NgayLap)
 
-execute procThemHDX 'HDN001','001','03/04/2019'
-execute procThemHDX 'HDN002','002','03/04/2018'
+execute procThemHDX 'HDX001','001','03/04/2019'
+execute procThemHDX 'HDX002','002','03/04/2018'
 
 create proc procSuaHDX
 @MaHDX VARCHAR(10),
@@ -306,7 +331,7 @@ from tblChiTietHDX
 select *from vDanhSachChiTietHoaDonXuat
 
 
-alter proc proc_ThemChiTietHDX
+create proc proc_ThemChiTietHDX
 @MaHDX VARCHAR(10),
 @Masach VARCHAR(10),
 @SL INT,

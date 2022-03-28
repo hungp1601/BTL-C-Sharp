@@ -88,7 +88,7 @@ namespace WindowsFormsApp2
             // btnXoa
             // 
             this.btnXoa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnXoa.Location = new System.Drawing.Point(557, 357);
+            this.btnXoa.Location = new System.Drawing.Point(560, 355);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(64, 26);
             this.btnXoa.TabIndex = 54;
@@ -99,7 +99,7 @@ namespace WindowsFormsApp2
             // btnSua
             // 
             this.btnSua.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSua.Location = new System.Drawing.Point(557, 305);
+            this.btnSua.Location = new System.Drawing.Point(560, 303);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(64, 25);
             this.btnSua.TabIndex = 53;
@@ -110,7 +110,7 @@ namespace WindowsFormsApp2
             // btnThem
             // 
             this.btnThem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnThem.Location = new System.Drawing.Point(557, 249);
+            this.btnThem.Location = new System.Drawing.Point(560, 247);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(64, 26);
             this.btnThem.TabIndex = 52;
@@ -289,6 +289,7 @@ namespace WindowsFormsApp2
             this.Name = "fmChiTietHoaDonNhap";
             this.Text = "fmChiTietHoaDonNhap";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fmChiTietHoaDonNhap_FormClosing);
             this.Load += new System.EventHandler(this.fmChiTietHoaDonNhap_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSachHDN)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();

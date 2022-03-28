@@ -26,7 +26,13 @@ namespace WindowsFormsApp2
                 {
                     e.Cancel = true;
                 }
-                else e.Cancel = false;
+                else
+                {
+                   
+                    e.Cancel = false;
+                    dangnhap obj = (dangnhap)Application.OpenForms["dangnhap"];
+                    obj.Close();
+                }
         }
 
         private void thoátToolStripMenuItem_Click(object sender, EventArgs e)
@@ -65,6 +71,20 @@ namespace WindowsFormsApp2
         private void chiTiếtHóaĐơnToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fmChiTietHoaDonXuat form = new fmChiTietHoaDonXuat();
+            form.MdiParent = this;
+            form.Show();
+        }
+
+        private void quảnLýNhàXuấtBảnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fmNhaXuatBan form = new fmNhaXuatBan();
+            form.MdiParent = this;
+            form.Show();
+        }
+
+        private void quảnLýSáchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fmSach form = new fmSach();
             form.MdiParent = this;
             form.Show();
         }
