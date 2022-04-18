@@ -53,6 +53,8 @@ namespace WindowsFormsApp2
             this.label3 = new System.Windows.Forms.Label();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.txtTim = new System.Windows.Forms.TextBox();
+            this.txtSL = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDanhSachHDN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -272,11 +274,32 @@ namespace WindowsFormsApp2
             this.txtTim.TabIndex = 110;
             this.txtTim.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
+            // txtSL
+            // 
+            this.txtSL.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtSL.Location = new System.Drawing.Point(346, 345);
+            this.txtSL.Name = "txtSL";
+            this.txtSL.Size = new System.Drawing.Size(91, 20);
+            this.txtSL.TabIndex = 111;
+            this.txtSL.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSL_KeyPress);
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(249, 349);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(49, 13);
+            this.label5.TabIndex = 112;
+            this.label5.Text = "Số lượng";
+            // 
             // fmSach
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(686, 390);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.txtSL);
             this.Controls.Add(this.txtTim);
             this.Controls.Add(this.txtTheLoai);
             this.Controls.Add(this.label3);
@@ -329,5 +352,7 @@ namespace WindowsFormsApp2
         private System.Windows.Forms.DataGridViewTextBoxColumn sl;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.TextBox txtTim;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtSL;
     }
 }

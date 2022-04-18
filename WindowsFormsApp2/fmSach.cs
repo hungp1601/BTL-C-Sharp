@@ -129,6 +129,7 @@ namespace WindowsFormsApp2
             cbbNXB.Text = dgvDanhSachHDN.CurrentRow.Cells[3].Value.ToString();
             txtTheLoai.Text = dgvDanhSachHDN.CurrentRow.Cells[5].Value.ToString();
             txtTG.Text = dgvDanhSachHDN.CurrentRow.Cells[4].Value.ToString();
+            txtSL.Text= dgvDanhSachHDN.CurrentRow.Cells[6].Value.ToString();
         }
 
         private void cbbNXB_SelectedIndexChanged(object sender, EventArgs e)
@@ -178,18 +179,66 @@ namespace WindowsFormsApp2
 
             param = cmd.Parameters.AddWithValue("@TheLoai", txtTheLoai.Text);
 
+            param = cmd.Parameters.AddWithValue("@SL", int.Parse(txtSL.Text));
             con.Open();
+
+            SqlConnection sqlConnection1 = new SqlConnection(ConnectionString);
+            sqlConnection.Open();
+            SqlCommand cmd2 = new SqlCommand("select * from vDanhSachSach " +
+                "where sTensach = '" + txtTenSach.Text + "'", sqlConnection);
+            SqlDataAdapter da = new SqlDataAdapter(cmd2);
+            DataSet ds1 = new DataSet();
+            da.Fill(ds1);
+            int i = ds1.Tables[0].Rows.Count;
+            sqlConnection1.Close();
 
             try
             {
-                int rowsAffected = cmd.ExecuteNonQuery();
-                if (rowsAffected > 0)
+                if (i > 0)
                 {
-                    MessageBox.Show("thêm thành công", "thông báo");
+                    if (MessageBox.Show("đã có cuốn sách này, bạn có muốn thêm số lượng vào cuốn sách đã có", "Thoát", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        string SQL3 = "suaslsach";
+
+                        SqlConnection con3 = new SqlConnection(ConnectionString);
+
+                        SqlCommand cmd3 = new SqlCommand(SQL3, con3);
+
+                        cmd3.CommandType = CommandType.StoredProcedure;
+
+                        SqlParameter param3;
+
+                        param3 = cmd3.Parameters.AddWithValue("@tensach", txtTenSach.Text);
+
+                        param3 = cmd3.Parameters.AddWithValue("@sl", int.Parse(txtSL.Text));
+                        
+
+                        con3.Open();
+                        int rowsAffected3 = cmd3.ExecuteNonQuery();
+                        if (rowsAffected3 > 0)
+                        {
+                            MessageBox.Show("thêm số lượng thành công", "thông báo");
+                        }
+                        else
+                        {
+                            MessageBox.Show("thêm số lượng thất bại", "thông báo");
+                        }
+                        con3.Close();
+                    }
+                    
                 }
+                        
                 else
                 {
-                    MessageBox.Show("thêm thất bại", "thông báo");
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("thêm thành công", "thông báo");
+                    }
+                    else
+                    {
+                        MessageBox.Show("thêm thất bại", "thông báo");
+                    }
                 }
             }
             catch
@@ -306,6 +355,26 @@ namespace WindowsFormsApp2
         private void txtTenSach_Validating(object sender, CancelEventArgs e)
         {
             Check_Empty_String(txtTenSach);
+            SqlConnection sqlConnection = new SqlConnection(ConnectionString);
+            sqlConnection.Open();
+            SqlCommand cmd = new SqlCommand("select * from vDanhSachSach " +
+                "where sTensach = '" + txtTenSach.Text + "'", sqlConnection);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataSet ds1 = new DataSet();
+            da.Fill(ds1);
+            int i = ds1.Tables[0].Rows.Count;
+            sqlConnection.Close();
+    
+            if (i > 0)
+            {
+                errorProvider1.SetError( txtTenSach,"Tên cuốn sách này đã có");
+            }
+            else
+            {
+                errorProvider1.SetError(txtTenSach, "");
+            } 
+                
+
         }
 
         private void txtTG_Validating(object sender, CancelEventArgs e)
@@ -332,8 +401,9 @@ namespace WindowsFormsApp2
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            string sql = "select * from vDanhSachNhanVien where sTenNV like N'%" + txtTim.Text
-                + "%' or [Mã Nhân Viên] like '%" + txtTim.Text + "%' or [số điện thoại] like '%" + txtTim.Text + "%'";
+            string sql = "select * from vDanhSachSach where sMasach like N'%" + txtTim.Text
+                + "%' or sTensach like N'%" + txtTim.Text + "%' or [ten nxb] like '%" 
+                + txtTim.Text + "%' or sTacgia like '%"+txtTim.Text + "%' or sTheLoai like '%"+txtTim.Text+ "%'";
             SqlConnection connection = new SqlConnection(ConnectionString);
             connection.Open();
             SqlDataAdapter dataadapter = new SqlDataAdapter(sql, connection);
@@ -343,10 +413,24 @@ namespace WindowsFormsApp2
             dataadapter.Fill(ds);
             if (ds.Tables[0].Rows.Count > 0)
             {
-                dgvDSNhanVien.DataSource = ds.Tables[0];
+                dgvDanhSachHDN.DataSource = ds.Tables[0];
             }
             connection.Close();
             btnInitial();
+        }
+
+        private void txtSL_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char ch = e.KeyChar;
+            if (ch == 46 && txtSL.Text.IndexOf('.') != -1)
+            {
+                e.Handled = true;
+                return;
+            }
+            if (!Char.IsDigit(ch) && ch != 8 && ch != 46)
+            {
+                e.Handled = true;
+            }
         }
     }
 }

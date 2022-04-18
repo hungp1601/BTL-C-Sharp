@@ -54,12 +54,7 @@ namespace WindowsFormsApp2
             form.Show();
         }
 
-        private void báoCáoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            rpHoaDonNhap form = new rpHoaDonNhap();
-            form.MdiParent = this;
-            form.Show();
-        }
+       
 
         private void quảnLýHóaĐơnXuấtToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -85,6 +80,13 @@ namespace WindowsFormsApp2
         private void quảnLýSáchToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fmSach form = new fmSach();
+            form.MdiParent = this;
+            form.Show();
+        }
+
+        private void thốngKêNhânViênToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fmBaoCaoNhanVien form = new fmBaoCaoNhanVien();
             form.MdiParent = this;
             form.Show();
         }

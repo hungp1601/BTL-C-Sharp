@@ -19,12 +19,14 @@ namespace WindowsFormsApp2
             btnThem.Enabled = true;
             btnSua.Enabled = false;
             btnXoa.Enabled = false;
+            btnIn.Enabled = false;
         }
         void btnChooseRow()
         {
             btnThem.Enabled = false;
             btnSua.Enabled = true;
             btnXoa.Enabled = true;
+            btnIn.Enabled = true;
         }
 
         void btnDisabledAll()
@@ -32,6 +34,7 @@ namespace WindowsFormsApp2
             btnThem.Enabled = false;
             btnSua.Enabled = false;
             btnXoa.Enabled = false;
+            btnIn.Enabled = false;
 
         }
         void btnExisted()
@@ -39,6 +42,7 @@ namespace WindowsFormsApp2
             btnThem.Enabled = false;
             btnSua.Enabled = true;
             btnXoa.Enabled = true;
+            btnIn.Enabled = true;
 
         }
 
@@ -305,6 +309,13 @@ namespace WindowsFormsApp2
             string i = (string)cmd.ExecuteScalar();
             txtTenNV.Text = i;
 
+        }
+
+        private void btnIn_Click(object sender, EventArgs e)
+        {
+            
+            fmHoadonnhap form = new fmHoadonnhap(txtMaHDN.Text);
+            form.Show();
         }
     }
 }

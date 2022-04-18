@@ -16,14 +16,14 @@ namespace WindowsFormsApp2 {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class CrystalReport1 : ReportClass {
+    public class rpNhanVien : ReportClass {
         
-        public CrystalReport1() {
+        public rpNhanVien() {
         }
         
         public override string ResourceName {
             get {
-                return "CrystalReport1.rpt";
+                return "rpNhanVien.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace WindowsFormsApp2 {
         
         public override string FullResourceName {
             get {
-                return "WindowsFormsApp2.CrystalReport1.rpt";
+                return "WindowsFormsApp2.rpNhanVien.rpt";
             }
             set {
                 // Do nothing
@@ -90,9 +90,9 @@ namespace WindowsFormsApp2 {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedCrystalReport1 : Component, ICachedReport {
+    public class CachedrpNhanVien : Component, ICachedReport {
         
-        public CachedCrystalReport1() {
+        public CachedrpNhanVien() {
         }
         
         [Browsable(false)]
@@ -129,7 +129,7 @@ namespace WindowsFormsApp2 {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            CrystalReport1 rpt = new CrystalReport1();
+            rpNhanVien rpt = new rpNhanVien();
             rpt.Site = this.Site;
             return rpt;
         }

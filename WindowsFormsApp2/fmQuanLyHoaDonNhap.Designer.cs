@@ -49,6 +49,7 @@ namespace WindowsFormsApp2
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.label3 = new System.Windows.Forms.Label();
             this.txtTenNV = new System.Windows.Forms.TextBox();
+            this.btnIn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDSHoaDonNhap)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -126,7 +127,7 @@ namespace WindowsFormsApp2
             // btnXoa
             // 
             this.btnXoa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnXoa.Location = new System.Drawing.Point(650, 402);
+            this.btnXoa.Location = new System.Drawing.Point(650, 345);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(75, 30);
             this.btnXoa.TabIndex = 41;
@@ -137,7 +138,7 @@ namespace WindowsFormsApp2
             // btnSua
             // 
             this.btnSua.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSua.Location = new System.Drawing.Point(650, 336);
+            this.btnSua.Location = new System.Drawing.Point(650, 296);
             this.btnSua.Name = "btnSua";
             this.btnSua.Size = new System.Drawing.Size(75, 29);
             this.btnSua.TabIndex = 40;
@@ -148,7 +149,7 @@ namespace WindowsFormsApp2
             // btnThem
             // 
             this.btnThem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnThem.Location = new System.Drawing.Point(650, 277);
+            this.btnThem.Location = new System.Drawing.Point(650, 248);
             this.btnThem.Name = "btnThem";
             this.btnThem.Size = new System.Drawing.Size(75, 30);
             this.btnThem.TabIndex = 39;
@@ -243,10 +244,22 @@ namespace WindowsFormsApp2
             this.txtTenNV.Size = new System.Drawing.Size(168, 20);
             this.txtTenNV.TabIndex = 45;
             // 
+            // btnIn
+            // 
+            this.btnIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnIn.Location = new System.Drawing.Point(650, 395);
+            this.btnIn.Name = "btnIn";
+            this.btnIn.Size = new System.Drawing.Size(75, 30);
+            this.btnIn.TabIndex = 46;
+            this.btnIn.Text = "In hóa đơn";
+            this.btnIn.UseVisualStyleBackColor = true;
+            this.btnIn.Click += new System.EventHandler(this.btnIn_Click);
+            // 
             // fmQuanLyHoaDonNhap
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnIn);
             this.Controls.Add(this.txtTenNV);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cbbMaNV);
@@ -292,5 +305,6 @@ namespace WindowsFormsApp2
         private System.Windows.Forms.DataGridViewTextBoxColumn tennv;
         private System.Windows.Forms.DataGridViewTextBoxColumn ngaylap;
         private System.Windows.Forms.DataGridViewTextBoxColumn tongtien;
+        private System.Windows.Forms.Button btnIn;
     }
 }

@@ -42,6 +42,7 @@ namespace WindowsFormsApp2
             this.quảnLýNhânViênCửaHàngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quảnLýToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thoátToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thốngKêNhânViênToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -132,7 +133,8 @@ namespace WindowsFormsApp2
             // quảnLýNhânViênCửaHàngToolStripMenuItem
             // 
             this.quảnLýNhânViênCửaHàngToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.quảnLýToolStripMenuItem});
+            this.quảnLýToolStripMenuItem,
+            this.thốngKêNhânViênToolStripMenuItem});
             this.quảnLýNhânViênCửaHàngToolStripMenuItem.Name = "quảnLýNhânViênCửaHàngToolStripMenuItem";
             this.quảnLýNhânViênCửaHàngToolStripMenuItem.Size = new System.Drawing.Size(167, 20);
             this.quảnLýNhânViênCửaHàngToolStripMenuItem.Text = "Quản lý nhân viên cửa hàng";
@@ -150,6 +152,13 @@ namespace WindowsFormsApp2
             this.thoátToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
             this.thoátToolStripMenuItem.Text = "Thoát";
             this.thoátToolStripMenuItem.Click += new System.EventHandler(this.thoátToolStripMenuItem_Click);
+            // 
+            // thốngKêNhânViênToolStripMenuItem
+            // 
+            this.thốngKêNhânViênToolStripMenuItem.Name = "thốngKêNhânViênToolStripMenuItem";
+            this.thốngKêNhânViênToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.thốngKêNhânViênToolStripMenuItem.Text = "Thống kê nhân viên";
+            this.thốngKêNhânViênToolStripMenuItem.Click += new System.EventHandler(this.thốngKêNhânViênToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -184,6 +193,7 @@ namespace WindowsFormsApp2
         private System.Windows.Forms.ToolStripMenuItem chiTiếtHóaĐơnToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quảnLýSáchToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem quảnLýNhàXuấtBảnToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem thốngKêNhânViênToolStripMenuItem;
     }
 }
 

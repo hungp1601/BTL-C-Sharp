@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="hoadonnhap" targetNamespace="http://tempuri.org/hoadonnhap.xsd" xmlns:mstns="http://tempuri.org/hoadonnhap.xsd" xmlns="http://tempuri.org/hoadonnhap.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="QuanLyCuaHangSachConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="QuanLyCuaHangSachConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.WindowsFormsApp2.Properties.Settings.GlobalReference.Default.QuanLyCuaHangSachConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vHoadonnhapTableAdapter" GeneratorDataComponentClassName="vHoadonnhapTableAdapter" Name="vHoadonnhap" UserDataComponentName="vHoadonnhapTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="QuanLyCuaHangSachConnectionString (Settings)" DbObjectName="QuanLyCuaHangSach.dbo.vHoadonnhap" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT sMaHDN, [Tên nhân viên], sMasach, [Ten sach], iSL, fDGmua, [tong tien], [Tổng tiền], [Ngày lập] FROM dbo.vHoadonnhap</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="sMaHDN" DataSetColumn="sMaHDN" />
+              <Mapping SourceColumn="Tên nhân viên" DataSetColumn="Tên nhân viên" />
+              <Mapping SourceColumn="sMasach" DataSetColumn="sMasach" />
+              <Mapping SourceColumn="Ten sach" DataSetColumn="Ten sach" />
+              <Mapping SourceColumn="iSL" DataSetColumn="iSL" />
+              <Mapping SourceColumn="fDGmua" DataSetColumn="fDGmua" />
+              <Mapping SourceColumn="tong tien" DataSetColumn="tong tien" />
+              <Mapping SourceColumn="Tổng tiền" DataSetColumn="Tổng tiền" />
+              <Mapping SourceColumn="Ngày lập" DataSetColumn="Ngày lập" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="hoadonnhap" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="hoadonnhap" msprop:Generator_UserDSName="hoadonnhap">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vHoadonnhap" msprop:Generator_TableClassName="vHoadonnhapDataTable" msprop:Generator_TableVarName="tablevHoadonnhap" msprop:Generator_TablePropName="vHoadonnhap" msprop:Generator_RowDeletingName="vHoadonnhapRowDeleting" msprop:Generator_RowChangingName="vHoadonnhapRowChanging" msprop:Generator_RowEvHandlerName="vHoadonnhapRowChangeEventHandler" msprop:Generator_RowDeletedName="vHoadonnhapRowDeleted" msprop:Generator_UserTableName="vHoadonnhap" msprop:Generator_RowChangedName="vHoadonnhapRowChanged" msprop:Generator_RowEvArgName="vHoadonnhapRowChangeEvent" msprop:Generator_RowClassName="vHoadonnhapRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="sMaHDN" msprop:Generator_ColumnVarNameInTable="columnsMaHDN" msprop:Generator_ColumnPropNameInRow="sMaHDN" msprop:Generator_ColumnPropNameInTable="sMaHDNColumn" msprop:Generator_UserColumnName="sMaHDN">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Tên_x0020_nhân_x0020_viên" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTên_nhân_viên" msprop:Generator_ColumnPropNameInRow="Tên_nhân_viên" msprop:Generator_ColumnPropNameInTable="Tên_nhân_viênColumn" msprop:Generator_UserColumnName="Tên nhân viên" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="25" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="sMasach" msprop:Generator_ColumnVarNameInTable="columnsMasach" msprop:Generator_ColumnPropNameInRow="sMasach" msprop:Generator_ColumnPropNameInTable="sMasachColumn" msprop:Generator_UserColumnName="sMasach">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Ten_x0020_sach" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTen_sach" msprop:Generator_ColumnPropNameInRow="Ten_sach" msprop:Generator_ColumnPropNameInTable="Ten_sachColumn" msprop:Generator_UserColumnName="Ten sach" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="iSL" msprop:Generator_ColumnVarNameInTable="columniSL" msprop:Generator_ColumnPropNameInRow="iSL" msprop:Generator_ColumnPropNameInTable="iSLColumn" msprop:Generator_UserColumnName="iSL" type="xs:int" minOccurs="0" />
+              <xs:element name="fDGmua" msprop:Generator_ColumnVarNameInTable="columnfDGmua" msprop:Generator_ColumnPropNameInRow="fDGmua" msprop:Generator_ColumnPropNameInTable="fDGmuaColumn" msprop:Generator_UserColumnName="fDGmua" type="xs:double" minOccurs="0" />
+              <xs:element name="tong_x0020_tien" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columntong_tien" msprop:Generator_ColumnPropNameInRow="tong_tien" msprop:Generator_ColumnPropNameInTable="tong_tienColumn" msprop:Generator_UserColumnName="tong tien" type="xs:double" minOccurs="0" />
+              <xs:element name="Tổng_x0020_tiền" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnTổng_tiền" msprop:Generator_ColumnPropNameInRow="Tổng_tiền" msprop:Generator_ColumnPropNameInTable="Tổng_tiềnColumn" msprop:Generator_UserColumnName="Tổng tiền" type="xs:double" minOccurs="0" />
+              <xs:element name="Ngày_x0020_lập" msprop:Generator_ColumnVarNameInTable="columnNgày_lập" msprop:Generator_ColumnPropNameInRow="Ngày_lập" msprop:Generator_ColumnPropNameInTable="Ngày_lậpColumn" msprop:Generator_UserColumnName="Ngày lập" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vHoadonnhap" />
+      <xs:field xpath="mstns:sMaHDN" />
+      <xs:field xpath="mstns:sMasach" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

@@ -139,7 +139,6 @@ C:\Users\hungk\source\repos\BTL C Sharp\WindowsFormsApp2\bin\Debug\WindowsFormsA
 C:\Users\hungk\source\repos\BTL C Sharp\WindowsFormsApp2\bin\Debug\WindowsFormsApp2.exe
 C:\Users\hungk\source\repos\BTL C Sharp\WindowsFormsApp2\bin\Debug\WindowsFormsApp2.pdb
 C:\Users\hungk\source\repos\BTL C Sharp\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.Properties.Resources.resources
-C:\Users\hungk\source\repos\BTL C Sharp\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.rpHoaDonNhap.resources
 C:\Users\hungk\source\repos\BTL C Sharp\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.exe
 C:\Users\hungk\source\repos\BTL C Sharp\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.pdb
 C:\Users\hungk\source\repos\BTL C Sharp\WindowsFormsApp2\obj\Debug\QLCuaHangSach.csproj.AssemblyReference.cache
@@ -148,3 +147,5 @@ C:\Users\hungk\source\repos\BTL C Sharp\WindowsFormsApp2\obj\Debug\WindowsFormsA
 C:\Users\hungk\source\repos\BTL C Sharp\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.fmChiTietHoaDonXuat.resources
 C:\Users\hungk\source\repos\BTL C Sharp\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.fmNhaXuatBan.resources
 C:\Users\hungk\source\repos\BTL C Sharp\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.fmSach.resources
+C:\Users\hungk\source\repos\BTL C Sharp\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.fmBaoCaoNhanVien.resources
+C:\Users\hungk\source\repos\BTL C Sharp\WindowsFormsApp2\obj\Debug\WindowsFormsApp2.fmHoadonnhap.resources

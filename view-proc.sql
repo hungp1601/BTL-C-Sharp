@@ -51,18 +51,21 @@ from tblSach
 
 select * from vDanhSachSach
 
+select * from vDanhSachSach where sMasach like ''
+
 create procedure them_sach
 @Masach VARCHAR(10),
 @Tensach NVARCHAR(255),
 @MaNXB VARCHAR(10),
 @Tacgia NVARCHAR(255),
-@Theloai NVARCHAR(255)
+@Theloai NVARCHAR(255),
+@SL INT
 as 
 begin 
-	insert into tblSach values (@Masach,@Tensach,@MaNXB,@Tacgia,@Theloai,0)
+	insert into tblSach values (@Masach,@Tensach,@MaNXB,@Tacgia,@Theloai,@SL)
 end
-
-exec them_sach '22',N'dark nhân tâm','241',N'hung',N'chúa hề'
+select * from vDanhSachSach
+exec them_sach '30',N'tùy nhân tâm','241',N'hung',N'chúa hề',3
 
 exec them_sach '23',N'Làm đĩ','243',N'Vũ Trọng Phụng',N'truyện'
 
@@ -80,7 +83,16 @@ begin
 end
 
 select * from tblSach
-
+drop procedure suaslsach 
+create procedure suaslsach 
+@tensach NVARCHAR(255),
+@sl INT
+as 
+begin
+	update tblSach set iSLSach=iSLSach+@sl
+	where sTensach=@tensach
+end
+exec suaslsach N'dark nhân tâm',3
 create procedure xoa_sach
 @Masach VARCHAR(10)
 as 
@@ -133,7 +145,7 @@ fPC as N'Phụ Cấp', fHSL*luong+fPC as N'Lương',dNgayvaolam N'Ngày vào là
 FROM tblNhanVien,Luongcoban
 
 select * from vDanhSachNhanVien
-
+select * from vDanhSachNhanVien where sTenNV like N'%Hù%'
 create proc procSuaNhanVien
 @MaNV VARCHAR(10),
 @TenNV NVARCHAR(25),
@@ -160,7 +172,7 @@ begin
 	where sMaNV=@MaNV
 end
 
-select * from vDanhSachNhanVien where sTenNV like N'%Hù%'
+
 
 
 --thủ tục liên quan đến hóa đơn nhap
@@ -369,3 +381,21 @@ begin
 end
 
 exec  proc_XoaChiTietHDX 'HDX002', '22'
+
+create proc procHoadonnhap
+@MaHD VARCHAR(10)
+as 
+BEGIN
+	select sMaHDN,[Tên nhân viên],sMasach, [Ten sach], iSL, fDGmua, [tong tien], [Tổng tiền], [Ngày lập]
+	from vDanhSachHoaDonNhap a,vDanhSachChiTietHoaDonNhap b
+	where a.[Mã hóa đơn]=b.sMaHDN
+END 
+
+create view vHoadonnhap
+as 
+
+	select sMaHDN,[Tên nhân viên],sMasach, [Ten sach], iSL, fDGmua, [tong tien], [Tổng tiền], [Ngày lập]
+	from vDanhSachHoaDonNhap a,vDanhSachChiTietHoaDonNhap b
+	where a.[Mã hóa đơn]=b.sMaHDN
+
+select * from vHoadonnhap

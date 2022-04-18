@@ -145,17 +145,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CrystalReport1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CrystalReport1.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="dangnhap.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="dangnhap.Designer.cs">
       <DependentUpon>dangnhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fmBaoCaoNhanVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fmBaoCaoNhanVien.Designer.cs">
+      <DependentUpon>fmBaoCaoNhanVien.cs</DependentUpon>
     </Compile>
     <Compile Include="fmChiTietHoaDonNhap.cs">
       <SubType>Form</SubType>
@@ -168,6 +168,12 @@
     </Compile>
     <Compile Include="fmChiTietHoaDonXuat.Designer.cs">
       <DependentUpon>fmChiTietHoaDonXuat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fmHoadonnhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fmHoadonnhap.Designer.cs">
+      <DependentUpon>fmHoadonnhap.cs</DependentUpon>
     </Compile>
     <Compile Include="fmNhaXuatBan.cs">
       <SubType>Form</SubType>
@@ -205,31 +211,44 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QuanLyCuaHangSachDataSet.Designer.cs">
+    <Compile Include="hoadonnhap.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QuanLyCuaHangSachDataSet.xsd</DependentUpon>
+      <DependentUpon>hoadonnhap.xsd</DependentUpon>
     </Compile>
-    <Compile Include="rpHoaDonNhap.cs">
-      <SubType>Form</SubType>
+    <Compile Include="nhanvien.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>nhanvien.xsd</DependentUpon>
     </Compile>
-    <Compile Include="rpHoaDonNhap.Designer.cs">
-      <DependentUpon>rpHoaDonNhap.cs</DependentUpon>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="rpHoadonnhap.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rpHoadonnhap.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
-    <EmbeddedResource Include="CrystalReport1.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>CrystalReport1.cs</LastGenOutput>
-    </EmbeddedResource>
+    <Compile Include="rpNhanVien.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rpNhanVien.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="dangnhap.resx">
       <DependentUpon>dangnhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fmBaoCaoNhanVien.resx">
+      <DependentUpon>fmBaoCaoNhanVien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fmChiTietHoaDonNhap.resx">
       <DependentUpon>fmChiTietHoaDonNhap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fmChiTietHoaDonXuat.resx">
       <DependentUpon>fmChiTietHoaDonXuat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fmHoadonnhap.resx">
+      <DependentUpon>fmHoadonnhap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fmNhaXuatBan.resx">
       <DependentUpon>fmNhaXuatBan.cs</DependentUpon>
@@ -259,10 +278,37 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="rpHoaDonNhap.resx">
-      <DependentUpon>rpHoaDonNhap.cs</DependentUpon>
+    <EmbeddedResource Include="rpHoadonnhap.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rpHoadonnhap.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rpNhanVien.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rpNhanVien.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include=".editorconfig" />
+    <None Include="hoadonnhap.xsc">
+      <DependentUpon>hoadonnhap.xsd</DependentUpon>
+    </None>
+    <None Include="hoadonnhap.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>hoadonnhap.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="hoadonnhap.xss">
+      <DependentUpon>hoadonnhap.xsd</DependentUpon>
+    </None>
+    <None Include="nhanvien.xsc">
+      <DependentUpon>nhanvien.xsd</DependentUpon>
+    </None>
+    <None Include="nhanvien.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>nhanvien.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="nhanvien.xss">
+      <DependentUpon>nhanvien.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -273,17 +319,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="QuanLyCuaHangSachDataSet.xsc">
-      <DependentUpon>QuanLyCuaHangSachDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="QuanLyCuaHangSachDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>QuanLyCuaHangSachDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="QuanLyCuaHangSachDataSet.xss">
-      <DependentUpon>QuanLyCuaHangSachDataSet.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
